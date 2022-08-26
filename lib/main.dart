@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:firedart/firedart.dart';
+import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_application_1/ui/pages/home/home_page.dart';
 
 Future<void> main() async {
@@ -13,13 +13,17 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return FluentApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      title: 'Material App',
-      home: const HomePage(),
+          scaffoldBackgroundColor: Color.fromARGB(255, 170, 84, 84),
+          accentColor: Colors.red,
+          iconTheme: const IconThemeData(size: 24)),
+      darkTheme: ThemeData(
+          scaffoldBackgroundColor: Colors.black,
+          accentColor: Colors.blue,
+          iconTheme: const IconThemeData(size: 24)),
+      home: HomePage(),
     );
   }
 }

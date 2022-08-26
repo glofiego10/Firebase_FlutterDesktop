@@ -1,4 +1,5 @@
 import 'package:firedart/auth/firebase_auth.dart';
+import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,14 +20,44 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Material App Bar'),
-      ),
-      body: Center(
-        child: Container(
-          child: Text("text"),
-        ),
+    int index = 0;
+    return NavigationView(
+      pane: NavigationPane(
+          onChanged: (newIndex) {
+            setState(() {
+              index = newIndex;
+              print(index);
+            });
+          },
+          selected: index,
+          items: [
+            PaneItem(icon: Icon(Icons.code), title: Text("Sample Page 1")),
+            PaneItem(
+                icon: Icon(Icons.desktop_windows_outlined),
+                title: Text("Sample Page 2"))
+          ]),
+      content: NavigationBody(
+        index: index,
+        children: [
+          ScaffoldPage(
+            header: Text(
+              "Sample Page 2",
+              style: TextStyle(fontSize: 60),
+            ),
+            content: Center(
+              child: Text("Welcome to Page 2!"),
+            ),
+          ),
+          ScaffoldPage(
+            header: Text(
+              "Sample Page 1",
+              style: TextStyle(fontSize: 60),
+            ),
+            content: Center(
+              child: Text("Welcome to Page 1!"),
+            ),
+          ),
+        ],
       ),
     );
   }
